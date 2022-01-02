@@ -13,7 +13,6 @@ class Solution(object):
         p1 = head
         dummy = ListNode(0,head)
         p2 = dummy
-        i = 0
         #p1 先走 k 步
         for i in range(n):
             p1 = p1.next
@@ -21,6 +20,6 @@ class Solution(object):
         while p1:
             p1 = p1.next
             p2 = p2.next
-        #p2 现在指向第 n - k 个节点
+        #因为p2是从dummy开始走的，所以p2 现在指向第 n - k + 1 个节点，可以执行删除操作
         p2.next = p2.next.next
         return dummy.next
