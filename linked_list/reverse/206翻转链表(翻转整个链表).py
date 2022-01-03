@@ -17,12 +17,12 @@ class Solution(object):
         cur = head
         while cur:
             # 记录当前节点的下一个节点
-            tmp = cur.next
+            next = cur.next
             # 然后将当前节点指向pre
             cur.next = pre
             # pre和cur节点都前进一位
             pre = cur
-            cur = tmp
+            cur = next
         return pre
 
 #递归解法
