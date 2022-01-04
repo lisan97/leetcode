@@ -5,21 +5,21 @@ class ListNode(object):
 
 #翻转整个链表
 def reverseList(head:ListNode):
+    if not head or not head.next:
+        return head
+    last = reverseList(head.next)
+    head.next.next = head
+    head.next = None
 
-
-    return
+    return last
 
 
 #翻转前N个链表
 def reverseN(head:ListNode,n):
-    if not head or not head.next:
+    if n == 1:
+        suceesor = head.next
         return head
-
-    return
-
-#翻转链表某个区间
-def reverseGroup(a:ListNode,b:ListNode):
-    #翻转区间[a,b)
-    #调用时还需维护一个pre(a的前一个)用来和newHead相连
-
-    return
+    last = reverseN(head.next,n-1)
+    head.next.next = head
+    head.next = suceesor
+    return last
