@@ -15,18 +15,18 @@ class Solution(object):
         self.res = 0
         # 记录遍历到的节点的深度
         self.depth = 0
-        self.reverse(root)
+        self.traverse(root)
         return self.res
 
-    def reverse(self, root):
+    def traverse(self, root):
         if not root:
             # 到达叶子节点，更新最大深度
             self.res = max(self.res, self.depth)
             return
         # 前序位置，从父节点进入子节点，深度+1
         self.depth += 1
-        self.reverse(root.left)
-        self.reverse(root.right)
+        self.traverse(root.left)
+        self.traverse(root.right)
         # 后序位置，离开子节点返回其父节点，深度-1
         self.depth -= 1
 
