@@ -24,6 +24,7 @@ class Solution(object):
         right = self.traverse(root.right)
         # 左右子树加上自己，就是以自己为根的二叉树序列化结果
         subtree = left + ',' + right + ',' + str(root.val)
+        #记录有没有出现过，一般都用hashMap
         freq = self.memo.setdefault(subtree, 0)
         # 多次重复也只会被加入结果集一次
         if freq == 1:
