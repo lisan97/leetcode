@@ -21,7 +21,8 @@ class Solution(object):
         while queue:
             size = len(queue)
             tmp = []
-            #从左到右遍历每一层的每个节点
+            #这个for循环是为了从左到右遍历每一层的每个节点，将这层的节点放进一个list
+            #如果不需要放，只是print的话，则不需要这个for循环
             for _ in range(size):
                 cur = queue.popleft()
                 #将本层的节点放入tmp
