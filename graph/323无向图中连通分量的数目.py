@@ -14,7 +14,7 @@ class UF(object):
     #返回节点 x 的连通分量根节点
     def find(self,x):
         while self.parent[x] != x:
-            #进行路径压缩
+            #进行路径压缩，保证任意树的高度保持在常数，使得 union 和 connected API 时间复杂度为 O(1)。
             self.parent[x] = self.parent[self.parent[x]]
             x = self.parent[x]
         return x
