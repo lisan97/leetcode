@@ -1,3 +1,4 @@
+#DFS
 class Solution(object):
     def solve(self, board):
         """
