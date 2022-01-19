@@ -1,3 +1,4 @@
+from UF import UF
 #DFS
 class Solution(object):
     def solve(self, board):
@@ -39,3 +40,43 @@ class Solution(object):
         self.traverse(x + 1, y)
         self.traverse(x, y - 1)
         self.traverse(x, y + 1)
+
+#UF
+class Solution(object):
+    def solve(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: None Do not return anything, modify board in-place instead.
+        """
+        if not board:
+            return
+        m = len(board)
+        n = len(board[0])
+        uf = UF(m*n+1)
+        dummy = m*n
+        for i in range(m):
+            if board[i][0] == 'O':
+                uf.union(dummy,i*n)
+            if board[i][n-1] == 'O':
+                uf.union(dummy,i*n+n-1)
+        for i in range(1,n-1):
+            if board[0][i] == 'O':
+                uf.union(dummy,i)
+            if board[m-1][i] == 'O':
+                uf.union(dummy,(m-1)*n+i)
+
+        d = [[1,0],[0,1],[-1,0],[0,-1]]
+        for i in range(1,m-1):
+            for j in range(1,n-1):
+                if board[i][j] == 'O':
+                    for a in range(4):
+                        x = i+d[a][0]
+                        y = j+d[a][1]
+                        if board[x][y] == 'O':
+                            uf.union(i*n+j,x*n+y)
+        for i in range(1,m-1):
+            for j in range(1,n-1):
+                if board[i][j] == 'O':
+                    if not uf.connected(dummy,i*n+j):
+                        board[i][j] = 'X'
+        return board
