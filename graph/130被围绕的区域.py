@@ -52,28 +52,33 @@ class Solution(object):
             return
         m = len(board)
         n = len(board[0])
+        #给 dummy 留一个额外位置
         uf = UF(m*n+1)
         dummy = m*n
+        #将首列和末列的 O 与 dummy 连通
         for i in range(m):
             if board[i][0] == 'O':
                 uf.union(dummy,i*n)
             if board[i][n-1] == 'O':
                 uf.union(dummy,i*n+n-1)
+        #将首行和末行的 O 与 dummy 连通
         for i in range(1,n-1):
             if board[0][i] == 'O':
                 uf.union(dummy,i)
             if board[m-1][i] == 'O':
                 uf.union(dummy,(m-1)*n+i)
-
+        #方向数组 d 是上下左右搜索的常用手法
         d = [[1,0],[0,1],[-1,0],[0,-1]]
         for i in range(1,m-1):
             for j in range(1,n-1):
                 if board[i][j] == 'O':
+                    #将此 O 与上下左右的 O 连通
                     for a in range(4):
                         x = i+d[a][0]
                         y = j+d[a][1]
                         if board[x][y] == 'O':
                             uf.union(i*n+j,x*n+y)
+        #所有不和 dummy 连通的 O，都要被替换
         for i in range(1,m-1):
             for j in range(1,n-1):
                 if board[i][j] == 'O':
