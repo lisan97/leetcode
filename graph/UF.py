@@ -42,6 +42,6 @@ class UF(object):
         return rootP == rootQ
 
     #返回图中的连通分量个数
-    def count(self):
+    def Count(self):
         return self.count
 
