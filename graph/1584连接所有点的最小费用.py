@@ -1,4 +1,5 @@
 from UF import UF
+from Prim import Prim
 
 class Solution(object):
     def minCostConnectPoints(self, points):
@@ -29,3 +30,33 @@ class Solution(object):
                 uf.union(p,q)
                 total += cost
         return total
+
+class Solution(object):
+    def minCostConnectPoints(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        n = len(points)
+        if n == 1:
+            return 0
+        graph = self.buildGraph(n,points)
+        #print(graph)
+        prim = Prim(graph)
+        prim.Prim()
+        return prim.WeithSum()
+
+    def buildGraph(self,n,points):
+        graph = [[] for _ in range(n)]
+        for i in range(n):
+            p = points[i]
+            xi = p[0]
+            yi = p[1]
+            for j in range(i+1,n):
+                q = points[j]
+                xj = q[0]
+                yj = q[1]
+            #python的heapq默认按第一个值排序，所以把weight放第一个
+                graph[i].append([abs(xi-xj)+abs(yi-yj),i,j])
+                graph[j].append([abs(xi-xj)+abs(yi-yj),j,i])
+        return graph

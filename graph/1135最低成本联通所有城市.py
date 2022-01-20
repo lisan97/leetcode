@@ -1,4 +1,6 @@
 from UF import UF
+from Prim import Prim
+#Kruskal
 class Solution(object):
     def minimumCost(self, n, connections):
         """
@@ -24,6 +26,29 @@ class Solution(object):
                 total += cost
         #保证所有节点都被连通
         return total if uf.Count() == 1 else -1
+#Prim
+class Solution(object):
+    def minimumCost(self, n, connections):
+        """
+        :type n: int
+        :type edges: List[List[str]]
+        :rtype: int
+        """
+        graph = self.buildGraph(n,connections)
+        prim = Prim(graph)
+        prim.Prim()
+        return prim.WeithSum() if prim.allConnected() else -1
+
+    def buildGraph(self,n,connections):
+        graph = [[] for _ in range(n)]
+        for edge in connections:
+            city1 = edge[0] -1
+            city2 = edge[1] -1
+            cost = edge[2]
+            #python的heapq默认按第一个值排序，所以把weight放第一个
+            graph[city1].append([cost,city1,city2])
+            graph[city2].append([cost,city2,city1])
+        return graph
 
 if __name__ == '__main__':
     n = 3
