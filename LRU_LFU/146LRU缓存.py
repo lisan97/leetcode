@@ -45,21 +45,28 @@ class LRUCache:
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
+        # 如果 key 存在，先通过哈希表定位，再移到尾部
         node = self.cache[key]
         self.moveToTail(node)
         return node.value
 
     def put(self, key: int, value: int) -> None:
         if key not in self.cache:
+            # 如果 key 不存在，创建一个新的节点
             node = DlinkedNode(key,value)
+            # 添加进哈希表
             self.cache[key] = node
+            # 添加至双向链表的尾部
             self.addToTail(node)
             self.size += 1
             if self.size > self.capacity:
+                 # 如果超出容量，删除双向链表的尾部节点
                 removed = self.removeHead()
+                # 删除哈希表中对应的项
                 del self.cache[removed.key]
                 self.size -= 1
         else:
+            # 如果 key 存在，先通过哈希表定位，再修改 value，并移到尾部
             node = self.cache[key]
             node.value = value
             self.moveToTail(node)
