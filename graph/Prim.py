@@ -3,6 +3,7 @@ class Prim(object):
     def __init__(self,graph):
         #储「横切边」的优先级队列
         self.pq = []
+        heapify(self.pq)
         #记录最小生成树的权重和
         self.weithSum = 0
         #图中有 n 个节点

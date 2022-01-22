@@ -35,6 +35,33 @@ class Solution(object):
             res.append(tmp)
         return res
 
+#迭代BFS不用for循环
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        from collections import deque
+        if not root:
+            return []
+        res = []
+        queue = deque()
+        queue.append((root,0))
+        #从上到下遍历二叉树的每一层
+        while queue:
+            cur,depth = queue.popleft()
+            # 当遍历到一个新的深度 level，而最终结果 res 中还没有创建 level 对应的列表时，应该在 res 中新建一个列表用来保存该 level 的所有节点
+            if len(res) == depth:
+                res.append([])
+            res[depth].append(cur.val)
+            if cur.left:
+                queue.append((cur.left,depth+1))
+            if cur.right:
+                queue.append((cur.right,depth+1))
+
+        return res
+
 #递归DFS
 class Solution(object):
     def levelOrder(self, root):
