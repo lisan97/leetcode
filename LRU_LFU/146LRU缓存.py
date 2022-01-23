@@ -23,7 +23,7 @@ class LRUCache:
                 self.queue[key] = value
             else:
                 self.queue[key] = value
-#自己实现哈希链表
+#自己实现哈希链表(linked hash map)
 class DlinkedNode:
     def __init__(self,key=0,value=0):
         self.key = key
