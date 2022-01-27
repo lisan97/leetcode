@@ -5,6 +5,9 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        ''' 
+        直接记录下有几个 preSum[j] 和 preSum[i] - k 相等，直接更新结果，就避免了内层的 for 循环(计算preSum[i]-preSum[j]=k)
+        '''
         #记录该前缀和出现的次数
         #base case
         prenum = {0:1}
