@@ -26,7 +26,7 @@ class RandomizedSet(object):
             return False
         # 先拿到 val 的索引
         i = self.dic[val]
-        # 将最后一个元素对应的索引修改为 i
+        # 将最后一个元素对应的索引修改为 i，先改索引，再交换和删除
         self.dic[self.array[-1]] = i
         # 交换val 和最后一个元素
         self.array[i], self.array[-1] = self.array[-1], self.array[i]
