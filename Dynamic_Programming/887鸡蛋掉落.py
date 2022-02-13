@@ -72,3 +72,21 @@ class Solution(object):
                 res = min(res, broken + 1)
         self.memo[(k, n)] = res
         return self.memo[(k, n)]
+
+#复杂度 O(KN)
+class Solution(object):
+    def superEggDrop(self, K, N):
+        """
+        :type K: int
+        :type N: int
+        :rtype: int
+        """
+        #当前有 k 个鸡蛋，可以尝试扔 m 次鸡蛋,这个状态下，最坏情况下最多能确切测试一栋 n 层的楼
+        dp = [[0]*(N+1) for _ in range(K+1)]
+        m = 0
+        while dp[K][m] < N:
+            m += 1
+            for k in range(1,K+1):
+                #总的楼层数 = 楼上的楼层数 + 楼下的楼层数 + 1（当前这层楼）,m是允许操作的上界，所以m-1
+                dp[k][m] = dp[k][m-1] + dp[k-1][m-1] + 1
+        return m
