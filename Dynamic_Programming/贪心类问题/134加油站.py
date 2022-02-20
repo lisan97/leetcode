@@ -8,7 +8,7 @@ class Solution(object):
         """
         n = len(gas)
         #相当于图像中的坐标点和最低点
-        total,minsum,start=0,0,0
+        total,minsum,start=0,float('inf'),0
         for i in range(n):
             total += gas[i] - cost[i]
             if total < minsum:
