@@ -8,10 +8,10 @@ class Solution(object):
         self.res = []
         #记录路径
         track = []
-        self.backward(nums,track)
+        self.backtrack(nums,track)
         return self.res
 
-    def backward(self,nums,track):
+    def backtrack(self,nums,track):
         #结束条件：nums 中的元素全都在 track 中出现
         if len(track) == len(nums):
             # 向 res 中添加 path 时需要拷贝一个新的列表，不能直接append(path)否则最终 res 中的列表都是空的。
@@ -24,6 +24,6 @@ class Solution(object):
             #做选择
             track.append(nums[i])
             #进入下一层决策树
-            self.backward(nums,track)
+            self.backtrack(nums,track)
             #取消选择
             track.pop()

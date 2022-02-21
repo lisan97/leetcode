@@ -7,7 +7,7 @@ class Solution(object):
         #状态：气球区间(i,j)
         #选择：戳哪个
         #dp[i][j]表示(i,j)内的最大值
-        #base case，j<=i+1无球可戳，dp[i][j] =  0
+        #base case，j<=i+1无球可戳，dp[i][j] = 0
         #状态转移：关键在于dp数组的定义，需要避免子问题互相影响，所以我们反向思考,最后戳哪个球得分最高
         n = len(nums)
         #添加两侧的虚拟气球,因此(i,j)是开区间
