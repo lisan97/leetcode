@@ -42,7 +42,7 @@ class Solution(object):
             tank += gas[i] - cost[i]
             if tank < 0:
                 #无法从 start 走到 i
-                #无法从 start 走到 i
+                #那么 start 以及 start, i 之间的所有站点都不可能作为起点，从i+1开始
                 tank = 0
                 start = i+1
         return 0 if start == n else start
