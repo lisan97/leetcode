@@ -67,6 +67,7 @@ class Solution(object):
             self.memo[tuple(used)] = res
             return res
 
+        #如果该used的状态曾经出现过，则不用再穷举了，避免冗余计算
         if tuple(used) in self.memo:
             return self.memo[tuple(used)]
 
