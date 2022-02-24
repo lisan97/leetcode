@@ -37,6 +37,7 @@ class Solution(object):
         :type right: int
         :rtype: ListNode
         """
+        # 例子1->2->3->4->5   1->4->3->2->1
         if not head or not head.next:
             return head
         dummy = ListNode()
@@ -44,11 +45,17 @@ class Solution(object):
         pre = dummy
         for _ in range(left - 1):
             pre = pre.next
+        #pre:1
+        #a:2
         a = b = pre.next
         for _ in range(right - left + 1):
             b = b.next
+        #b:5
         newHead = self.reverse(a, b)
+        #newHead:4
+        #1->4
         pre.next = newHead
+        #2->5
         a.next = b
         return dummy.next
 
@@ -60,6 +67,7 @@ class Solution(object):
         pre = None
         cur = a
         while cur != b:
+            #在改变cur.next前，存下之前的cur.next
             next = cur.next
             cur.next = pre
             pre = cur
@@ -76,9 +84,11 @@ class Solution(object):
         :type right: int
         :rtype: ListNode
         """
+        #例子1->2->3->4->5   1->4->3->2->1
         if not head or not head.next:
             return head
         if left == 1:
+            #返回的是翻转后的头结点4，然后被1连上
             return self.reverseN(head,right)
         #如果把 head.next 的索引视为1，反转的区间应该是从第left-1个元素开始的，就这样前进到反转的起点触发 base case
         head.next = self.reverseBetween(head.next,left-1,right-1)
