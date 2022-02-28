@@ -35,3 +35,14 @@ class Solution(object):
                     dp[i][j][0] = right
                     dp[i][j][1] = dp[i][j-1][0]
         return dp[0][n-1][0] - dp[0][n-1][1] > 0
+
+#先手的其实肯定赢
+class Solution(object):
+    def stoneGame(self, piles):
+        """
+        :type piles: List[int]
+        :rtype: bool
+        """
+        #作为第一个拿石头的人，你可以控制自己拿到所有偶数堆，或者所有的奇数堆，
+        # 可以在第一步就观察好，奇数堆的石头总数多，还是偶数堆的石头总数多，然后步步为营，就一切尽在掌控之中了
+        return True
