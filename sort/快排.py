@@ -39,7 +39,7 @@ class Solution(object):
                 done = True
             else:
                 #如果走到这里，一定有：
-                # nums[i] >= pivot && nums[j] <= pivot
+                # nums[i] > pivot && nums[j] < pivot
                 # 所以需要交换 nums[i] 和 nums[j]，
                 # 保证 nums[lo..i] <= pivot <= nums[j..hi]
                 tmp = nums[i]
