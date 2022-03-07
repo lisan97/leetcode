@@ -13,7 +13,9 @@ class Solution(object):
                 need += 2
                 #当遇到左括号时，若对右括号的需求量为奇数，需要插入 1 个右括号
                 if need % 2 == 1:
+                    # 插入一个右括号
                     res += 1
+                    # 对右括号的需求减一
                     need -= 1
             else:
                 need -= 1
