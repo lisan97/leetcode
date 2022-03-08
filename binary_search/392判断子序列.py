@@ -45,7 +45,7 @@ class Solution(object):
             #向前移动指针 j
             j = dic[c][index] + 1
         return True
-    #查找左侧边界的二分查找
+    #查找左侧边界的二分查找，查找大于target的最小索引
     def binarySearch(self,nums,target):
         left = 0
         right = len(nums)

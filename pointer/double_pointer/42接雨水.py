@@ -45,6 +45,7 @@ class Solution(object):
             l_max = max(height[i],l_max)
             r_max = max(height[j],r_max)
             #res += min(l_max, r_max) - height[i]
+            #因为l_max小于r_max，此时并不需要管r_max是不是left 指针右边最高的
             if l_max < r_max:
                 res += l_max - height[i]
                 i += 1

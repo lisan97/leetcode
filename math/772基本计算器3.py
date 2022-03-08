@@ -21,6 +21,7 @@ class Solution(object):
             # 遇到左括号开始递归计算 num
             if c == '(':
                 num = self.help(s)
+            #遇到符号或到头
             if (not c.isdigit() and c != ' ') or not s:
                 if sign == '+':
                     stack.append(num)
