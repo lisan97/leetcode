@@ -17,7 +17,7 @@ class Solution(object):
         intervals = sorted(list(dic.values()),key=lambda x:x[0])
         n = len(intervals)
         if n == 1:
-            return m
+            return [m]
         res = []
         left = intervals[0][0]
         right = intervals[0][1]
