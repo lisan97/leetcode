@@ -18,7 +18,6 @@ class Solution(object):
         #dp[-1][0]  = 0
         #dp[-1][1] = float('-inf')
         n = len(prices)
-        k = n
         if n == 1:
             return 0
         dp = [[0]*2 for _ in range(n)]
