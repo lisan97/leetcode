@@ -37,5 +37,5 @@ class Solution(object):
             if start <= last:
                 count += 1
             else:
-                last = max(last,end)
+                last = end
         return n - count
