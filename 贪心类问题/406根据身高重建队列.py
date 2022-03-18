@@ -24,6 +24,7 @@ class Solution(object):
         :type people: List[List[int]]
         :rtype: List[List[int]]
         """
+        #根据身高倒序排序后，i是多少就代表前面有几个人比他身高高；再按照x[1]排序是为了减少插入次数
         n = len(people)
         if n == 1:
             return people
