@@ -46,6 +46,7 @@ class Solution(object):
                 nums[i] = nums[j]
                 nums[j] = tmp
         #将 pivot 值交换到正确的位置
+        #因为此时i=j+1，所以j才是pivot正确的位置
         tmp = nums[lo]
         nums[lo] = nums[j]
         nums[j] = tmp
