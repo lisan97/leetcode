@@ -6,9 +6,11 @@ class Solution(object):
         """
         from collections import defaultdict
         dic = defaultdict(int)
+        max_count = 0
         for c in s:
             dic[c] += 1
-        buckets = [[] for _ in range(len(s)+1)]
+            max_count = max(max_count,dic[c])
+        buckets = [[] for _ in range(max_count+1)]
         for k,v in dic.items():
             buckets[v].append(k)
         res = ''
