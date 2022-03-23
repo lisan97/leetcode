@@ -14,11 +14,7 @@ class Solution(object):
         #触发结束条件
         if row == n:
             #python需要这样写才能正确放入东西
-            temp_res = []
-            for temp in board:
-                temp_str = "".join(temp)
-                temp_res.append(temp_str)
-            self.res.append(temp_res)
+            self.res.append([''.join(t) for t in board])
             return
         for col in range(n):
             #排除不合法选择
