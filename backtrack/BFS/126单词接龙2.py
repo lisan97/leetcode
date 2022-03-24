@@ -7,63 +7,55 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         from collections import deque, defaultdict
-        import string
         wordset = set(wordList)
-        res = []
+        self.res = []
         if len(wordset) == 0 or endWord not in wordset:
-            return res
-
-        successors = defaultdict(set)
-        # 第 1 步：使用广度优先遍历得到后继结点列表 successors
-        found = self.bfs(beginWord, endWord, wordset, successors)
-        if not found:
-            return res
-        # 第 2 步：基于后继结点列表 successors ，使用回溯算法得到所有最短路径列表
-        path = [beginWord]
-        self.dfs(beginWord, endWord, successors, path, res)
-        return res
-
-    def bfs(self, beginWord, endWord, wordset, successors):
-        found = False
-        visited = set([beginWord])
+            return self.res
         queue = deque([beginWord])
-        res = []
-        word_len = len(beginWord)
+        #记录beginword到达endword最短路径的各节点的后继节点
+        neighbor = defaultdict(list)
+        #记录总的visited
+        visited = set([beginWord])
+        #记录下一个step的元素，防止重复加入本层
         next_level_visited = set()
-        while queue or not found:
+        found = False
+        #第 1 步：使用广度优先遍历得到后继结点列表
+        while queue and not found:
             sz = len(queue)
-            for i in range(sz):
+            for _ in range(sz):
                 word = queue.popleft()
                 word_list = list(word)
-                for j in range(word_len):
-                    ori_char = word_list[j]
-                    for k in string.ascii_lowercase:
-                        word_list[j] = k
+                for i in range(len(word_list)):
+                    ori_char = word_list[i]
+                    #将每一位替换成 26 个小写英文字母
+                    for j in range(26):
+                        word_list[i] = chr(ord('a')+j)
                         next_word = ''.join(word_list)
                         if next_word in wordset:
                             if next_word not in visited:
                                 if next_word == endWord:
                                     found = True
-                                # 避免下层元素重复加入队列
+                                # 避免下层元素重复加入本层的队列
                                 if next_word not in next_level_visited:
                                     next_level_visited.add(next_word)
                                     queue.append(next_word)
-                                successors[word].add(next_word)
-                    word_list[j] = ori_char
-            if found:
-                break
+                                neighbor[word].append(next_word)
+                    word_list[i] = ori_char
             # 取两集合全部的元素（并集，等价于将 next_level_visited 里的所有元素添加到 visited 里）
             visited = visited.union(next_level_visited)
             next_level_visited.clear()
-        return found
+        if not found:
+            return self.res
+        #第 2 步：基于后继结点列表 ，使用回溯算法得到所有最短路径列表
+        track = [beginWord]
+        self.traverse(track,beginWord,endWord,neighbor)
+        return self.res
 
-    def dfs(self, beginWord, endWord, successors, path, res):
+    def traverse(self,track,beginWord,endWord,neighbor):
         if beginWord == endWord:
-            res.append(path[:])
+            self.res.append(track[:])
             return
-        if beginWord not in successors:
-            return
-        for next_word in successors[beginWord]:
-            path.append(next_word)
-            self.dfs(next_word, endWord, successors, path, res)
-            path.pop()
+        for nextword in neighbor[beginWord]:
+            track.append(nextword)
+            self.traverse(track,nextword,endWord,neighbor)
+            track.pop()
