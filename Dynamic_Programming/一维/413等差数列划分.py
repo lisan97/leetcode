@@ -4,6 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        #子数组的dp定义是：以nums[i]结尾的等差数列的个数
+        #base case:dp[0]=0,dp[1]=0
+        #状态转移：dp[i] = dp[i-1] + 1
         n = len(nums)
         if n < 3:
             return 0
