@@ -12,6 +12,20 @@ class Solution(object):
                     dp[n][w] = max(dp[n-1][w-wt[n-1]]+val[n-1],dp[n-1][w])
         return dp[-1][-1]
 
+#状态压缩
+# n只依赖n-1的信息，之前算过的其他物品都不需要再使用。
+# 因此我们可以去掉 dp 矩阵的第一个维度，在考虑物品 i 时变成 dp[j] = max(dp[j], dp[j-w] + v)
+class Solution(object):
+    def backpack(self, N,W,wt,val):
+        dp = [0] * (W+1)
+        for i in range(N):
+            w = wt[i]
+            v = val[i]
+            #在遍历每一行的时候必须逆向遍历，这样才能够调用上一行物品 i-1 时 dp[j-w] 的值
+            for j in range(W,w-1,-1):
+                dp[j] = max(dp[j-w]+v,dp[j])
+        return dp[-1]
+
 if __name__ == '__main__':
     N = 3
     W = 4
