@@ -10,7 +10,7 @@ class Solution(object):
         #选择：是否放入这个字符串
         #dp[i][z][o]表示前i个字符串，在允许有z个0，o个1的情况下的最大子集长度
         #base case:dp[0][:][:] = 0, dp[:][0][0] = 0
-        #状态转移:dp[i][z][o] = max(dp[i-1][z][o],dp[i-1][z-zeros[i]][o-ones[i]]+len(strs[i]))
+        #状态转移:dp[i][z][o] = max(dp[i-1][z][o],dp[i-1][z-zeros[i]][o-ones[i]]+1)
         from collections import defaultdict
         length = len(strs)
         zeros = []
