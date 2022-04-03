@@ -18,22 +18,22 @@ class Solution(object):
                     dp[i] = max(dp[i],dp[j]+1)
         return max(dp)
         '''
-        piles = 0
-        top = [0] * n
-        for i in range(n):
+        length = 0
+        dp = [0] * len(nums)
+        for i in range(len(nums)):
+            num = nums[i]
             left = 0
-            right = piles
-            poker = nums[i]
+            right = length
             while left < right:
                 mid = (left + right) // 2
-                if top[mid] < poker:
+                if dp[mid] < num:
                     left = mid + 1
                 else:
                     right = mid
-            if left == piles:
-                piles += 1
-            top[left] = poker
-        return piles
+            if left == length:
+                length += 1
+            dp[left] = num
+        return length
 
 
 if __name__ == '__main__':

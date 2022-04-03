@@ -25,24 +25,25 @@ class Solution(object):
         以这种方式维护的 dp 数组永远是递增的，因此可以用二分查找加速搜索。
         '''
         #牌堆数初始化为 0
-        piles = 0
-        top = [0]*len(nums)
+        length = 0
+        dp = [0]*len(nums)
         for i in range(len(nums)):
             #要处理的扑克牌
-            poker = nums[i]
+            num = nums[i]
             left = 0
-            right = piles
-            #搜索左侧边界的二分查找：如果当前牌有多个堆可供选择，则选择最左边的那一堆放置。
+            right = length
+            #搜索左侧边界的二分查找(返回的这个值是 nums 中大于等于 target 的最小元素索引)
+            # 如果当前牌有多个堆可供选择，则选择最左边的那一堆放置。
             while left < right:
                 mid = (left+right) // 2
-                if top[mid] < poker:
+                if dp[mid] < num:
                     left = mid + 1
                 else:
                     right = mid
             #没找到合适的牌堆，新建一堆
-            if left == piles:
-                piles += 1
+            if left == length:
+                length += 1
             #把这张牌放到牌堆顶
-            top[left] = poker
+            dp[left] = num
         #牌堆数就是 LIS 长度
-        return piles
+        return length

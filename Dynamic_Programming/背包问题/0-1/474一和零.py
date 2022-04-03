@@ -29,6 +29,12 @@ class Solution(object):
                         dp[i][z][o] = max(dp[i-1][z][o],dp[i-1][z-zeros[i-1]][o-ones[i-1]]+1)
         return dp[-1][-1][-1]
 
+    def count(self,str):
+        dic = defaultdict(int)
+        for c in str:
+            dic[c] += 1
+        return dic['0'],dic['1']
+
 #三维压缩成二维
 class Solution(object):
     def findMaxForm(self, strs, m, n):
