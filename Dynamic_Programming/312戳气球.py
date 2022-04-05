@@ -22,3 +22,31 @@ class Solution(object):
                 for k in range(i+1,j):
                     dp[i][j] = max(dp[i][j],dp[i][k]+dp[k][j]+points[i]*points[k]*points[j])
         return dp[0][n+1]
+
+#自上而下分治
+class Solution(object):
+    def maxCoins(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        '''
+        由于戳气球的操作，发现这会导致两个气球从不相邻变成相邻，使得后续操作难以处理；
+        所以反过来看，每次从原数组内取一个气球加入1..1
+        '''
+        self.memo = {}
+        n = len(nums)
+        nums = [1] + nums + [1]
+        return self.dp(0, n + 1, nums)
+
+    def dp(self, left, right, nums):
+        if (left, right) in self.memo:
+            return self.memo[(left, right)]
+        if left >= right - 1:
+            return 0
+        best = 0
+        for i in range(left + 1, right):
+            total = nums[i] * nums[left] * nums[right] + self.dp(left, i, nums) + self.dp(i, right, nums)
+            best = max(total, best)
+        self.memo[(left, right)] = best
+        return best
