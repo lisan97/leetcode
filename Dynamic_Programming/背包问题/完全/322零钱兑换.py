@@ -43,7 +43,7 @@ class Solution(object):
         #选择：是否将该硬币放入
         #dp[i][j]前i个coin在限额j时的硬币个数
         #base case:dp[:][0]=0
-        #状态转移：dp[i][j] = min(dp[i-1][j],dp[i-1][j-coins[i]]+1)
+        #状态转移：dp[i][j] = min(dp[i-1][j],dp[i][j-coins[i]]+1)
         m = len(coins)
         n = amount
         dp = [[amount+1]*(n+1) for _ in range(m+1)]

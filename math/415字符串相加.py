@@ -7,6 +7,9 @@ class Solution(object):
         """
         m = len(num1)
         n = len(num2)
+        if m < n:
+            m,n = n,m
+            num1,num2 = num2,num1
         i = m-1
         j = n-1
         res = []
@@ -30,15 +33,6 @@ class Solution(object):
                 carry = 0
             res.append(str(t))
             i -= 1
-        while j >= 0:
-            t = int(num2[j]) + carry
-            if t >= 10:
-                t -= 10
-                carry = 1
-            else:
-                carry = 0
-            res.append(str(t))
-            j -= 1
         #需注意还有没有进位数没加上去(例如：1,9)
         if carry:
             res.append(str(carry))
