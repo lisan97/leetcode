@@ -18,12 +18,12 @@ class Solution(object):
         #将 k 个链表的头结点加入最小堆
         for i in range(len(lists)):
             if lists[i]:
-                heapq.heappush(head,(lists[i].val,i))
+                heapq.heappush(head,[lists[i].val,lists[i],i])
                 lists[i] = lists[i].next
         while head:
             #获取最小节点，接到结果链表中
-            val, index = heapq.heappop(head)
-            p.next = ListNode(val)
+            _,node, index = heapq.heappop(head)
+            p.next = node
             #p 指针不断前进
             p = p.next
             if lists[index]:
