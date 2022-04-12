@@ -13,6 +13,8 @@ class MinStack(object):
         self.s.append(val)
         #每次插入原栈时，都向新栈插入一次原栈里所有值的最小值（新栈栈顶和待插入值中小的那一个）
         #如果不每次都插入，bad case:s= [0,1,0],minS=[0],pop一次之后minS就为空了，但其实s里还有一个0
+        # 和单调栈的区别：单调栈是一定要将当前值插入，所以要把栈里所有小于等于当前值的都pop掉
+        # 而最小栈不一定要将当前值插入，所以只有当前值小于等于栈顶时，才能入栈
         if not self.minS or self.minS[-1] >= val:
             self.minS.append(val)
 

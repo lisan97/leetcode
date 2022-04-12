@@ -7,6 +7,7 @@ class Solution(object):
         """
         ''' 
         直接记录下有几个 preSum[j] 和 preSum[i] - k 相等，直接更新结果，就避免了内层的 for 循环(计算preSum[i]-preSum[j]=k)
+        在我们遍历到位置 i 时，假设当前的前缀和是 psum，那么dic[psum-k]即为以当前位置结尾、满足条件的区间个数，并更新全局的count
         '''
         #记录该前缀和出现的次数
         #base case
