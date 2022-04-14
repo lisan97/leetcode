@@ -1,4 +1,4 @@
-#暴力解法
+#暴力解法 时间复杂度：O(n×m)
 class Solution(object):
     def strStr(self, haystack, needle):
         """
@@ -10,6 +10,38 @@ class Solution(object):
         m = len(needle)
         for i in range(0,n-m+1):
             if haystack[i:i+m] == needle:
+                return i
+        return -1
+
+#暴力解法
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        '''
+        让字符串needle 与字符串haystack的所有长度为m的子串均匹配一次
+        '''
+        n = len(haystack)
+        m = len(needle)
+        if m > n:
+            return -1
+        if m == n:
+            if haystack == needle:
+                return 0
+            else:
+                return -1
+        for i in range(n-m+1):
+            found = True
+            for j in range(m):
+                #为了减少不必要的匹配，我们每次匹配失败即立刻停止当前子串的匹配，对下一个子串继续匹配。
+                if needle[j] != haystack[i+j]:
+                    found = False
+                    break
+            #如果当前子串匹配成功，我们返回当前子串的开始位置即可
+            if found:
                 return i
         return -1
 

@@ -24,6 +24,7 @@ class Solution(object):
                     stack.append(-num)
                 num = 0
                 sign = c
+            # 因为是在while里面，所以是break这个while循环而不是直接return
             if c == ')':
                 break
         return sum(stack)
