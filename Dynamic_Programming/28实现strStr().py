@@ -53,6 +53,39 @@ class Solution(object):
         :type needle: str
         :rtype: int
         """
+        nex = self.getnext(needle)
+        m = len(haystack)
+        n = len(needle)
+        j = -1 #因为next数组里记录的起始位置为-1
+        for i in range(m): #注意i就从0开始
+            while j >=0 and haystack[i] != needle[j+1]: #不匹配
+                j = nex[j] #j 寻找之前匹配的位置
+            if haystack[i] == needle[j+1]: #匹配，j和i同时向后移动
+                j += 1 #i的增加在for循环里
+            if j == n-1: #文本串s里出现了模式串t
+                return i - n + 1 #返回此时文本串的开头
+        return -1
+
+    def getnext(self,needle):
+        n = len(needle)
+        nex = [-1]*n
+        j = -1
+        for i in range(1,n): #注意i从1开始
+            while j >= 0 and needle[i] != needle[j+1]: #前后缀不相同
+                j = nex[j] #向前回溯
+            if needle[i] == needle[j+1]: #找到相同的前后缀
+                j += 1
+            nex[i] = j #将j（前缀的长度）赋给next[i]
+        return nex
+
+#labuladong KMP算法 复杂度较高
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
         n = len(haystack)
         m = len(needle)
         if m > n:
