@@ -18,9 +18,9 @@ class Solution(object):
                 return head
             b = b.next
         # 反转前 k 个元素
-        newHead = self.reverse(a, b)
+        newHead = self.reverse(a, b) #newHead是[a,b)区间的最后一个，现在变成了头结点，a变成了最后一个
         # 递归反转后续链表并连接起来
-        a.next = self.reverseKGroup(b, k)
+        a.next = self.reverseKGroup(b, k) #然后继续以b为头结点开始翻转下一个区间，并将a连上下一个区间的newHead
         return newHead
 
     def reverse(self, a, b):

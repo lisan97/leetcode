@@ -2,6 +2,7 @@ class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 #空间复杂度O(n)
 class Solution(object):
     def isPalindrome(self, head):
@@ -31,7 +32,7 @@ class Solution(object):
         while p2 and p2.next:
             p1 = p1.next
             p2 = p2.next.next
-        #如果fast指针没有指向null，说明链表长度为奇数，slow还要再前进一步
+        #如果fast指针没有指向null，说明链表长度为奇数，slow还要再前进一步(可有可无，就看要不要把中点算进来)
         if p2:
             p1 = p1.next
         #从slow开始反转后面的链表

@@ -40,21 +40,25 @@ class Solution(object):
         # 例子1->2->3->4->5   1->4->3->2->1
         if not head or not head.next:
             return head
-        dummy = ListNode()
+        dummy = ListNode() #防止从第一个开始翻转，没有pre节点的情况，因此弄一个虚拟头结点
         dummy.next = head
         pre = dummy
+        # 1.先将结点移动到a的前一个
         for _ in range(left - 1):
             pre = pre.next
+        # 2.确定[a,b)这个区间
         #pre:1
         #a:2
         a = b = pre.next
         for _ in range(right - left + 1):
             b = b.next
+        # 3.翻转[a,b)这个区间
         #b:5
         newHead = self.reverse(a, b)
         #newHead:4
         #1->4
         pre.next = newHead
+        # 4.将a(现在已是[a,b)区间的尾结点)指向b
         #2->5
         a.next = b
         return dummy.next

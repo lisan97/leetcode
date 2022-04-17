@@ -9,6 +9,7 @@ class Solution(object):
         :type head1, head1: ListNode
         :rtype: ListNode
         """
+        #如果遍历完还没相遇，两个都是None，也能输出
         p1 = headA
         p2 = headB
         while p1 != p2:
