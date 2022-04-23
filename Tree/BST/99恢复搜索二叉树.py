@@ -13,6 +13,7 @@ class Solution(object):
         #用两个变量first,second来记录需要交换的节点
         self.firstNode = None
         self.secondNode = None
+        #设置一个 prev 指针，记录当前节点中序遍历时的前节点
         self.pre = TreeNode(val=float('-inf'))
         self.traverse(root)
         if self.firstNode and self.secondNode:
@@ -23,8 +24,8 @@ class Solution(object):
         if not root:
             return
         self.traverse(root.left)
-        #第一个节点，是第一个按照中序遍历时候前一个节点大于后一个节点，我们选取前一个节点
-        #第二个节点，是在第一个节点找到之后，后面出现前一个节点大于后一个节点，我们选择后一个节点
+        # 如果遍历整个序列过程中只出现了一次次序错误，说明就是这两个相邻节点需要被交换；
+        # 如果出现了两次次序错误，那就需要交换这两个节点
         if root.val < self.pre.val:
             if not self.firstNode:
                 self.firstNode = self.pre
