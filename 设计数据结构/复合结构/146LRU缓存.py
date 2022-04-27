@@ -20,9 +20,79 @@ class LRUCache:
         else:
             if len(self.queue.keys()) == self.capacity:
                 self.queue.popitem(last=False)
-                self.queue[key] = value
-            else:
-                self.queue[key] = value
+            self.queue[key] = value
+
+#字典+双向链表 字典存放key->Node
+class Node:
+    def __init__(self,key,val,next=None,pre=None):
+        self.key = key
+        self.val = val
+        self.next = next
+        self.pre = pre
+
+class Doublelist:
+    def __init__(self):
+        self.head = Node(-1,-1)#head和tail都是哨兵结点
+        self.tail = Node(-1,-1)
+        self.head.next = self.tail
+        self.tail.pre = self.head
+        self.size = 0
+
+    def addFirst(self, x):
+        #在头部加入一个Node
+        x.next = self.head.next
+        x.pre = self.head
+        self.head.next.pre = x
+        self.head.next = x
+        self.size += 1
+
+    def remove(self, x):
+        #删除一个Node
+        x.next.pre = x.pre
+        x.pre.next = x.next
+        x.pre = None
+        x.next = None
+        self.size -= 1
+
+    def removeLast(self):
+        #删除最后一个结点，并返回
+        if self.size == 0:
+            return None
+        delNode = self.tail.pre
+        self.remove(delNode)
+        return delNode
+
+    def getSize(self):
+        return self.size
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.map = {}
+        self.cache = Doublelist()
+
+    def get(self, key: int) -> int:
+        if key in self.map:
+            val = self.map[key].val
+            self.put(key,val)
+            return val
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        newNode = Node(key,value)
+        if key in self.map:
+            self.cache.remove(self.map[key])
+            self.cache.addFirst(newNode)
+            self.map[key] = newNode
+        else:
+            if self.cache.getSize() == self.capacity:
+                delNode = self.cache.removeLast()
+                self.map.pop(delNode.key)
+            self.cache.addFirst(newNode)
+            self.map[key] = newNode
+
 #自己实现哈希链表(linked hash map)
 class DlinkedNode:
     def __init__(self,key=0,value=0):
