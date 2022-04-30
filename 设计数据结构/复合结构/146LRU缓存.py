@@ -50,8 +50,6 @@ class Doublelist:
         #删除一个Node
         x.next.pre = x.pre
         x.pre.next = x.next
-        x.pre = None
-        x.next = None
         self.size -= 1
 
     def removeLast(self):

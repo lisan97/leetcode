@@ -15,6 +15,8 @@ class MyQueue(object):
         """
         :rtype: int
         """
+        if self.empty():
+            return -1
         self.peek()
         return self.s2.pop()
 
@@ -22,6 +24,8 @@ class MyQueue(object):
         """
         :rtype: int
         """
+        if self.empty():
+            return -1
         if not self.s2:
             while self.s1:
                 self.s2.append(self.s1.pop())

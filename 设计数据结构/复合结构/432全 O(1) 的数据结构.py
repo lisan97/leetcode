@@ -15,9 +15,9 @@ class Doublelist:
         self.tail.pre = self.head
 
     def addNodeAfter(self, newNode, prevNode):
-        prevNode.next.pre = newNode
         newNode.next = prevNode.next
         newNode.pre = prevNode
+        prevNode.next.pre = newNode
         prevNode.next = newNode
 
     def remove(self, node):

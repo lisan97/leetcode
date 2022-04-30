@@ -24,3 +24,28 @@ class Solution(object):
         root.left = self.buildTree(preorder[1:mid+1],inorder[:mid])
         root.right = self.buildTree(preorder[mid+1:],inorder[mid+1:])
         return root
+
+#O(n)用哈希表把中序遍历每个值的索引记下来
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if not preorder:
+            return
+        self.dic = {v:k for k,v in enumerate(inorder)}
+        n = len(preorder)
+        return self.traverse(preorder,0,n-1,inorder,0,n-1)
+
+    def traverse(self,preorder,preLeft,preRight,inorder,inLeft,inRight):
+        if preLeft > preRight:
+            return None
+        preRoot = preLeft
+        inRoot = self.dic[preorder[preRoot]]
+        root = TreeNode(preorder[preRoot])
+        leftSize = inRoot-inLeft
+        root.left = self.traverse(preorder,preLeft+1,preLeft+leftSize,inorder,inLeft,inRoot-1)
+        root.right = self.traverse(preorder,preLeft+1+leftSize,preRight,inorder,inRoot+1,inRight)
+        return root
