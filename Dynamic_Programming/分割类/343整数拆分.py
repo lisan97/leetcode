@@ -14,7 +14,7 @@ class Solution(object):
         dp[0] = 0
         dp[1] = 0
         for i in range(2,n+1):
-            for j in range(1,i):
+            for j in range(1,i//2+1): #j遍历到i的一半就行
                 dp[i] = max(dp[i],j*(i-j),j*dp[i-j])
         return dp[-1]
 
@@ -28,6 +28,7 @@ class Solution(object):
         import math
         #推论一： 若拆分的数量 a 确定， 则 各拆分数字相等时 ，乘积最大。
         #推论二： 将数字 n 尽可能以因子 3 等分时，乘积最大。
+        #3*(n-3)>=2*(n-2)，当n>=5时
         #拆分规则：
         # 最优： 3 。把数字 n 可能拆为多个因子 3 ，余数可能为 0,1,2 三种情况。
         # 次优： 2 。若余数为 2 ；则保留，不再拆为 1+1 。
