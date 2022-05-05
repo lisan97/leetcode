@@ -82,14 +82,12 @@ class LRUCache:
         newNode = Node(key,value)
         if key in self.map:
             self.cache.remove(self.map[key])
-            self.cache.addFirst(newNode)
-            self.map[key] = newNode
         else:
             if self.cache.getSize() == self.capacity:
                 delNode = self.cache.removeLast()
                 self.map.pop(delNode.key)
-            self.cache.addFirst(newNode)
-            self.map[key] = newNode
+        self.cache.addFirst(newNode)
+        self.map[key] = newNode
 
 #自己实现哈希链表(linked hash map)
 class DlinkedNode:

@@ -41,11 +41,16 @@ class Solution(object):
         弄两个快慢指针，让快指针先走n步，然后开始同时走，
         当快指针遍历完链表时，慢指针正好在导数第n个结点
         '''
+        if not head or n == 0:
+            return
         dummy = ListNode()
         dummy.next = head
         slow = dummy
         fast = head
         for _ in range(n):
+            # 万一k大于链表长度
+            if not fast:
+                return
             fast = fast.next
 
         while fast:
