@@ -6,7 +6,7 @@ class Solution(object):
         """
         if not s:
             return " "
-        arr = [0] * 26
+        arr = [0] * 256
         for i in range(len(s)):
             n = ord(s[i])-ord('a')
             arr[n] += 1

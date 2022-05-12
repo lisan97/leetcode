@@ -24,8 +24,7 @@ class Solution:
     def merge(self,nums,l,mid,h):
         #先把 nums[lo..hi] 复制到辅助数组中
         #以便合并后的结果能够直接存入 nums
-        for i in range(l,h+1):
-            self.temp[i] = nums[i]
+        self.temp[l:h+1] = nums[l:h+1]
         #数组双指针技巧，合并两个有序数组
         i = l
         j = mid + 1

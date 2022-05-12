@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: int
         """
         digit = 1 #位数
-        count = 9 #数字
+        count = 9 #数位数量
         start = 1 #每digit位数的起始数字
         #1确定n所在的位数
         while n > count:
