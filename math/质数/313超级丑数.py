@@ -16,7 +16,7 @@ class Solution(object):
             for prime in primes:
                 if prime <= sys.maxsize / num:
                     heappush(pq,num*prime)
-                #使得只出现a×b,b×a不会出现(a>b)例如:7×2，2×7
+                #使得只出现a×b,b×a不会出现比如45即有可能是3 * 15，也有可能5 * 9，通过这个条件，可以不让5*9加入队列(因为9%3==0)中断了
                 if num % prime==0:
                     break
             n -= 1
