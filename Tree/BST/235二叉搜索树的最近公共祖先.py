@@ -19,3 +19,23 @@ class Solution(object):
         if root.val > max_val:
             return self.helper(root.left,min_val,max_val)
         return root
+
+#迭代写法
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        min_val = min(p.val,q.val)
+        max_val = max(p.val,q.val)
+        while root:
+            if root.val < min_val:
+                root = root.right
+            elif root.val > max_val:
+                root = root.left
+            else:
+                return root
+        return None

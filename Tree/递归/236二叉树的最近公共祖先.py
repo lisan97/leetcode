@@ -15,6 +15,7 @@ class Solution(object):
         # base case
         if not root:
             return None
+        #前提：这些节点必定存在于二叉树中，所以遇到了其中一个可以直接返回(也可以断定另一个就在其下面)
         if root == p or root == q:
             return root
 
