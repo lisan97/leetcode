@@ -16,4 +16,4 @@ class Solution(object):
         for i in range(32):
             res <<= 1 #左移 1 位
             res |= count[31-i] % m #得到 只出现一次的数字 的第 (31 - i) 位并恢复第 i 位的值到 res
-        return res if count[31] == 0 else ~(res ^ 0xffffffff) #如果res为负,需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）
+        return res if count[31] % m == 0 else ~(res ^ 0xffffffff) #如果res为负,需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）
