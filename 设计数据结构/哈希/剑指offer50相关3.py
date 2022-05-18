@@ -10,7 +10,10 @@ class Solution(object):
         for i in range(len(a)):
             arr[ord(a[i])-ord('a')] += 1
             arr[ord(b[i]) - ord('a')] -= 1
-        return sum(arr) == 0
+        for i in range(len(arr)):
+            if arr[i]:
+                return False
+        return True
 
 
 
