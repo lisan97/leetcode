@@ -4,6 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        if len(nums) < 3:
+            return []
         #排个序
         nums.sort()
         res = []
