@@ -1,3 +1,20 @@
+#空间复杂度O(n)
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        from collections import defaultdict
+        dic = defaultdict(int)
+        for num in nums:
+            dic[num] += 1
+        for num,v in dic.items():
+            if v == 1:
+                return num
+        return -1
+
+#空间复杂度O(1)
 class Solution(object):
     def singleNumber(self, nums):
         """
@@ -16,4 +33,4 @@ class Solution(object):
         for i in range(32):
             res <<= 1 #左移 1 位
             res |= count[31-i] % m #得到 只出现一次的数字 的第 (31 - i) 位并恢复第 i 位的值到 res
-        return res if count[31] % m == 0 else ~(res ^ 0xffffffff) #如果res为负,需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）
+        return res if count[31] % m == 0 else ~(res ^ 0xffffffff) #如果res为负,则求得到res的补码，需要先将 0 - 32 位取反（即 res ^ 0xffffffff ），再将所有位取反（即 ~ ）

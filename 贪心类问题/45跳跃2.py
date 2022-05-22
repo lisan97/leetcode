@@ -31,8 +31,8 @@ class Solution(object):
         :rtype: int
         """
         #每一跳选下一个位置能跳到最远的位置
-        farthest = 0
-        end = 0
+        farthest = 0 #farthest 标记了所有选择 [i..end] 中能够跳到的最远距离
+        end = 0 #i 和 end 标记了可以选择的跳跃步数
         count = 0
         for i in range(len(nums)-1):
             farthest = max(nums[i]+i,farthest)
