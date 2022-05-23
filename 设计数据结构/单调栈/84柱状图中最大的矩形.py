@@ -13,7 +13,7 @@ class Solution(object):
         for i in range(1,n):
             while heights[i] < heights[stack[-1]]:
                 cur_hei = heights[stack.pop()]
-                width = i - stack[-1] - 1#当前柱子和pop出的柱子前一个柱子的宽度差
+                width = i - stack[-1] - 1#当前柱子和pop出的柱子的前一位和前一个柱子的宽度差，所以此时栈顶元素stack[-1]到k-1之间的数均是不小于heights[i]的
                 area = cur_hei * width
                 res = max(res,area)
             stack.append(i)
