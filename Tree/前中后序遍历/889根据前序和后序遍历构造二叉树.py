@@ -24,3 +24,30 @@ class Solution(object):
         root.left = self.constructFromPrePost(preorder[1:leftid+2],postorder[:leftid+1])
         root.right = self.constructFromPrePost(preorder[leftid+2:],postorder[leftid+1:-1])
         return root
+
+class Solution(object):
+    def constructFromPrePost(self, preorder, postorder):
+        """
+        :type preorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        if not preorder:
+            return []
+        self.dic = {}
+        for k,v in enumerate(postorder):
+            self.dic[v] = k
+        n = len(postorder)
+        return self.traverse(preorder,0,n-1,postorder,0,n-1)
+
+    def traverse(self,preorder,preleft,preright,postorder,postleft,postright):
+        if preleft > preright or postleft > postright:
+            return None
+        if preleft == preright or postleft == postright:
+            return TreeNode(preorder[preleft])
+        root = TreeNode(preorder[preleft])
+        leftid = self.dic[preorder[preleft+1]]
+        leftsize = leftid - postleft #左子树的大小
+        root.left = self.traverse(preorder,preleft+1,preleft+leftsize+1,postorder,postleft,leftid)
+        root.right = self.traverse(preorder,preleft+leftsize+2,preright,postorder,leftid+1,postright-1)
+        return root

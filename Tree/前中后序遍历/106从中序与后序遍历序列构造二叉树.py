@@ -22,3 +22,28 @@ class Solution(object):
         root.left = self.buildTree(inorder[:mid],postorder[:mid])
         root.right = self.buildTree(inorder[mid+1:],postorder[mid:-1])
         return root
+
+
+class Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        self.dic = {}
+        for k, v in enumerate(inorder):
+            self.dic[v] = k
+        n = len(inorder)
+        return self.traverse(inorder, 0, n - 1, postorder, 0, n - 1)
+
+    def traverse(self, inorder, inleft, inright, postorder, postleft, postright):
+        if postleft > postright or inleft > inright:
+            return None
+        postroot = postorder[postright]
+        inroot = self.dic[postroot]
+        root = TreeNode(postroot)
+        rightsize = inright - (inroot + 1)  # 右子树的大小
+        root.left = self.traverse(inorder, inleft, inroot - 1, postorder, postleft, postright - 2 - rightsize)
+        root.right = self.traverse(inorder, inroot + 1, inright, postorder, postright - 1 - rightsize, postright - 1)
+        return root

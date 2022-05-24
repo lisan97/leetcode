@@ -45,7 +45,7 @@ class Solution(object):
         preRoot = preLeft
         inRoot = self.dic[preorder[preRoot]]
         root = TreeNode(preorder[preRoot])
-        leftSize = inRoot-inLeft
-        root.left = self.traverse(preorder,preLeft+1,preLeft+leftSize,inorder,inLeft,inRoot-1)
-        root.right = self.traverse(preorder,preLeft+1+leftSize,preRight,inorder,inRoot+1,inRight)
+        leftSize = inRoot-inLeft - 1
+        root.left = self.traverse(preorder,preLeft+1,preLeft+leftSize + 1,inorder,inLeft,inRoot-1)
+        root.right = self.traverse(preorder,preLeft+2+leftSize,preRight,inorder,inRoot+1,inRight)
         return root
