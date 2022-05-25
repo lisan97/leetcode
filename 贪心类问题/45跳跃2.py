@@ -15,10 +15,9 @@ class Solution(object):
         dp = [n] * n
         dp[-1] = 0
         for i in range(n-2,-1,-1):
-            for j in range(nums[i]):
-                j += 1
+            for j in range(1,nums[i]+1):
                 if i+j>n-1:
-                    continue
+                    break
                 dp[i] = min(dp[i],dp[i+j]+1)
         return dp[0]
 
