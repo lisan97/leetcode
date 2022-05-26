@@ -4,7 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        #两种情况：要么第一间房子被抢最后一间不抢(nums[1:])；要么最后一间房子被抢第一间不抢(nums[:n-1])。
+        #两种情况：要么第一间房子抢最后一间不抢(nums[1:])；要么最后一间房子抢第一间不抢(nums[:n-1])。
         n = len(nums)
         if n == 1:
             return nums[0]
