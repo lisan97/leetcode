@@ -11,7 +11,6 @@ class Trie(object):
     def __init__(self):
         self.root = TreeNode()
 
-
     def insert(self, word):
         """
         :type word: str
@@ -35,7 +34,6 @@ class Trie(object):
                 return False
             node = node.children[c]
         return node is not None and node.isEnd #同时该node还得是结尾的node
-
 
     def startsWith(self, prefix):
         """
