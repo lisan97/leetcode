@@ -91,6 +91,32 @@ class Solution(object):
                     dp[i][j] = dp[i-1][j]
         return dp[-1][-1]
 
+#状态压缩
+class Solution(object):
+    def findTargetSumWays(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        #转换为背包问题：取哪几个数加起来=(sum(nums)+target)/2
+        #dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i]]
+        #base case:dp[0][1:] = 0,dp[0][0] = 1
+        if not nums:
+            return 0
+        total = sum(nums)
+        if total < abs(target) or (total+target) % 2:
+            return 0
+        t = (total+target) / 2
+        n = len(nums)
+        dp = [0]*(t+1)
+        dp[0] = 1
+        for i in range(1,n+1):
+            for j in range(t,-1,-1):
+                if j >= nums[i-1]:
+                    dp[j] = dp[j] + dp[j-nums[i-1]]
+        return dp[-1]
+
 if __name__ == '__main__':
     nums = [1, 1, 1, 1, 1]
     target = 3
