@@ -5,6 +5,7 @@ class Binary_Tree():
         self.right = right
         self.parent = parent
 
+#中序遍历的下一个节点
 def find_next_node(pNode):
     # 是否非空节点
     if not pNode:

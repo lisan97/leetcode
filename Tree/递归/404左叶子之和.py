@@ -17,3 +17,23 @@ class Solution(object):
         if not root.left and not root.right and isleft:
             return root.val
         return self.helper(root.left,True) + self.helper(root.right,False)
+
+
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.res = 0
+        self.helper(root, False)
+        return self.res
+
+    def helper(self, root, isleft):
+        if not root:
+            return
+        if isleft and not root.left and not root.right:
+            self.res += root.val
+            return
+        self.helper(root.left, True)
+        self.helper(root.right, False)

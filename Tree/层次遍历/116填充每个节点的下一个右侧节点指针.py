@@ -27,3 +27,31 @@ class Solution(object):
         self.connectTwoNode(node2.left,node2.right)
         #连接跨越父节点的两个子节点
         self.connectTwoNode(node1.right,node2.left)
+
+#层次遍历
+class Solution(object):
+    def connect(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        #层次遍历
+        from collections import deque
+        if not root:
+            return
+        queue = deque([root])
+        while queue:
+            sz = len(queue)
+            pre = None
+            for _ in range(sz):
+                node = queue.popleft()
+                if not pre:
+                    pre = node
+                else:
+                    pre.next = node
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                pre = node
+        return root

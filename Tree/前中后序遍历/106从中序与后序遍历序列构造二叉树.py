@@ -43,7 +43,7 @@ class Solution(object):
         postroot = postorder[postright]
         inroot = self.dic[postroot]
         root = TreeNode(postroot)
-        rightsize = inright - (inroot + 1)  # 右子树的大小
-        root.left = self.traverse(inorder, inleft, inroot - 1, postorder, postleft, postright - 2 - rightsize)
-        root.right = self.traverse(inorder, inroot + 1, inright, postorder, postright - 1 - rightsize, postright - 1)
+        rightsize = inright - inroot  # 右子树的大小
+        root.left = self.traverse(inorder, inleft, inroot - 1, postorder, postleft, postright - 1 - rightsize)
+        root.right = self.traverse(inorder, inroot + 1, inright, postorder, postright - rightsize, postright - 1)
         return root

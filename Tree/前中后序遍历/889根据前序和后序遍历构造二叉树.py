@@ -47,7 +47,7 @@ class Solution(object):
             return TreeNode(preorder[preleft])
         root = TreeNode(preorder[preleft])
         leftid = self.dic[preorder[preleft+1]]
-        leftsize = leftid - postleft #左子树的大小
-        root.left = self.traverse(preorder,preleft+1,preleft+leftsize+1,postorder,postleft,leftid)
-        root.right = self.traverse(preorder,preleft+leftsize+2,preright,postorder,leftid+1,postright-1)
+        leftsize = leftid - postleft + 1 #左子树的大小
+        root.left = self.traverse(preorder,preleft+1,preleft+leftsize,postorder,postleft,leftid)
+        root.right = self.traverse(preorder,preleft+leftsize+1,preright,postorder,leftid+1,postright-1)
         return root
