@@ -25,7 +25,7 @@ class Solution(object):
             return
         self.traverse(root.left)
         # 如果遍历整个序列过程中只出现了一次次序错误，说明就是这两个相邻节点需要被交换；
-        # 如果出现了两次次序错误，那就需要交换这两个节点
+        # 如果出现了两次次序错误，那就需要交换这两个节点，说明后面有一个比前一个secondNode更小的节点
         if root.val < self.pre.val:
             if not self.firstNode:
                 self.firstNode = self.pre
