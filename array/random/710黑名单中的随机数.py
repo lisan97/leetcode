@@ -1,3 +1,21 @@
+#会memory error
+class Solution(object):
+
+    def __init__(self, n, blacklist):
+        import random
+        """
+        :type n: int
+        :type blacklist: List[int]
+        """
+        blacklist = set(blacklist)
+        self.nums = [i for i in range(n) if i not in blacklist]
+
+    def pick(self):
+        """
+        :rtype: int
+        """
+        return random.choice(self.nums)
+
 class Solution(object):
 
     def __init__(self, n, blacklist):

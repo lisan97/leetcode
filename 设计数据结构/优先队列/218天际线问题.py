@@ -6,7 +6,7 @@ class Solution(object):
         """
         from heapq import *
         #每个长方形的左右两个顶点都需要扫描一下
-        #右端点：此时意味着之前某一条往右延展的线结束了，这时候需要将高度出队，需重新计算此时的最高高度
+        #把右端点也加入的原因：此时意味着之前某一条往右延展的线结束了，这时候需要将过了的点出队，并重新计算此时的最高高度
         events = sorted([(L, -H, R) for L, R, H in buildings] + list(set((R, 0, 0) for _, R, _ in buildings)))
         res = [[0,0]]
         hq = [[0,float('inf')]] #[H,R]
