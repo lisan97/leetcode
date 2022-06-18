@@ -11,7 +11,7 @@ class TwoSum(object):
             other = value - key
             if other == key and self.freq[key] > 1:
                 return True
-            elif other != key and key in self.freq:
+            elif other != key and other in self.freq:
                 return True
             else:
                 return False

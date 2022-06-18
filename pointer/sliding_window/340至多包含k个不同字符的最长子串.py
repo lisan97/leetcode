@@ -8,16 +8,16 @@ class Solution(object):
         max_len = 0
         while right < n:
             c = s[right]
+            right += 1
             window[c] += 1
             while len(window) > k:
-                if right - left > max_len:
-                    max_len = right - left
                 d = s[left]
                 left += 1
                 window[d] -= 1
                 if window[d] == 0:
                     del window[d]
-            right += 1
+            if right - left > max_len:
+                max_len = right - left
         return max_len
 
 
