@@ -6,9 +6,9 @@ class Solution(object):
         """
         #当碰到右侧有比自己低的，那么以自己起始的最大矩形大小就定了，所以可以用单调栈来存储之前的柱子(小到大)
         #同时在首尾先加两个0的哨兵，在循环中就不用做非空判断
-        heights = [0] + heights + [0]
+        heights = heights + [0]
         n = len(heights)
-        stack = [0]
+        stack = [-1]
         res = 0
         for i in range(1,n):
             while heights[i] < heights[stack[-1]]:

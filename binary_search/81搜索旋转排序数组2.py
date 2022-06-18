@@ -34,7 +34,7 @@ class Solution(object):
                     right = mid - 1
             else:
                 #左边为递增区间
-                if target < nums[mid] and target >= nums[left]:
+                if target < nums[mid] and target > nums[right]:
                     right = mid - 1
                 else:
                     #不符合条件两种情况：
