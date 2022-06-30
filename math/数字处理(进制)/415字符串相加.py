@@ -38,3 +38,29 @@ class Solution(object):
             res.append(str(carry))
         res.reverse()
         return ''.join(res)
+
+class Solution(object):
+    def addStrings(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        m = len(num1)
+        n = len(num2)
+        i = m-1
+        j = n-1
+        carry = 0
+        res = ''
+        while i >= 0 or j >= 0:
+            a = int(num1[i]) if i >= 0 else 0
+            b = int(num2[j]) if j >= 0 else 0
+            total = carry + a + b
+            carry = total // 10
+            exist = total % 10
+            res = str(exist) + res
+            i -= 1
+            j -= 1
+        if carry:
+            res = '1' + res
+        return res

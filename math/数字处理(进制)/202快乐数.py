@@ -4,6 +4,10 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
+        '''
+        最终会得到 11
+        最终会进入循环
+        '''
         #快慢指针检测环，并检测起点是否等于1，不要用哈希集合，节省空间复杂度
         fast,slow = self.getnext(n),n
         while fast != 1 and fast != slow:

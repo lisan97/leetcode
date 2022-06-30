@@ -63,12 +63,10 @@ class Solution(object):
             neighbor[node2].append(node1)
 
         queue = deque([])
-        visited = set()
 
         for node in degree:
             if degree[node] == 1:
                 queue.append(node)
-                visited.add(node)
 
         while queue:
             sz = len(queue)

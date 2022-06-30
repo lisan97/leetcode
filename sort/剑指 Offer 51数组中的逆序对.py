@@ -4,7 +4,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        #使用归并排序，当右边部分当前数比左边部分当前值小时，拿mid-i+1得到逆序对的数量（左边部分比当前数大的数的数量）
+        #使用归并排序，当右边部分当前数比左边部分当前值小时，拿mid-i+1得到逆序对的数量（左边部分比当前数大的数的数量），因为左右都是顺序的
         if not nums:
             return 0
         n = len(nums)

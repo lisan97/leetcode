@@ -3,5 +3,8 @@ def gcd(a,b):
     if b < a:
         a,b=b,a
     while a != 0:
-        a,b = a%b,a
-    return a
+        a,b = b%a,a
+    return b
+
+if __name__ == '__main__':
+    print(gcd(27,45))

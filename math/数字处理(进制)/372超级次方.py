@@ -23,3 +23,17 @@ class Solution(object):
         else:
             sub = self.mypow(a, k / 2)
             return (sub ** 2) % 1337
+
+class Solution(object):
+    def superPow(self, a, b):
+        """
+        :type a: int
+        :type b: List[int]
+        :rtype: int
+        """
+        if not b:
+            return 1
+        last = b.pop()
+        first = a ** last
+        second = (self.superPow(a,b) ** 10) % 1337
+        return (first * second) % 1337

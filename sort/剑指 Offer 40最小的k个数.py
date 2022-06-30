@@ -42,7 +42,6 @@ class Solution(object):
             p = self.partition(arr,l,r)
         return arr[:p+1]
 
-
     def partition(self,nums,l,r):
         if l == r:
             return l
