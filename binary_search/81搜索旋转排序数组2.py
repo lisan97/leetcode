@@ -23,7 +23,7 @@ class Solution(object):
                 #无法判断哪个区间是增序的
                 left += 1
             elif nums[mid] <= nums[right]:
-                #右边为递增区间
+                #[mid,right]为递增区间，并且target也在这段区间中
                 if target > nums[mid] and target <= nums[right]:
                     left = mid + 1
                 else:
@@ -33,7 +33,7 @@ class Solution(object):
                     #这两种情况都要去左区间查找
                     right = mid - 1
             else:
-                #左边为递增区间
+                #[left,mid]为递增区间，并且target也在这段区间中
                 if target < nums[mid] and target > nums[right]:
                     right = mid - 1
                 else:
@@ -42,4 +42,50 @@ class Solution(object):
                     #2.target小于nums[left]
                     #这两种情况都要去右区间查找
                     left = mid + 1
+        return False
+
+#详细版
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        n = len(nums)
+        left = 0
+        right = n - 1
+        while left <= right:
+            mid = (left+right) // 2
+            if nums[mid] == target or nums[right] == target:
+                return True
+            #mid和right一样大，无法判定在哪一段，挪一格right再比
+            if nums[mid] == nums[right]:
+                right -= 1
+            #mid比right小，说明mid在右半段
+            elif nums[mid] < nums[right]:
+                #mid比target小
+                if nums[mid] < target:
+                    #target比right小，说明target在[mid,right]这段
+                    if target < nums[right]:
+                        left = mid + 1
+                    #target比right大，说明target在[left,mid]这段
+                    else:
+                        right = mid - 1
+                #mid比target大，那target一定也比right小，在[left,mid]这段
+                else:
+                    right = mid - 1
+            #mid比right大，说明mid在左半段
+            else:
+                #mid比target小，那target肯定也比right大,说明target在[mid,right]这段
+                if nums[mid] < target:
+                    left = mid + 1
+                #mid比target大
+                else:
+                    #target比right小，说明target在[mid,right]这段
+                    if target < nums[right]:
+                        left = mid + 1
+                    #target比right大，说明target在[left,mid]这段
+                    else:
+                        right = mid - 1
         return False
