@@ -46,5 +46,5 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    prices = [7,1,5,3,6,4]
+    prices = [7,2,3,4,9,1,7,5,20,6]
     print(Solution().maxProfit(prices))
