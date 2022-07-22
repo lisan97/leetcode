@@ -30,7 +30,7 @@ class BinHeap:
 			#结点 x 比俩孩子都小，就不必下沉了
 			else:
 				stop = True
-			i = i*2
+			i = mid
 
 	#选左右子节点更小的那个
 	def midPoint(self,i):
@@ -56,7 +56,7 @@ class BinHeap:
 	def buildHeap(self,lst):
 		self.currentSize = len(lst)
 		i = self.currentSize//2
-		self.heapList = [0] + lst
+		self.heapList = [0] + lst[:]
 		while i>0:
 			self.sink(i)
 			i -= 1
