@@ -22,7 +22,6 @@ class Solution(object):
                 res.append(tmp)
         return res
 
-
     def twoSumtarget(self,nums,start,target):
         l = start
         r = len(nums)-1

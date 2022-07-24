@@ -16,9 +16,7 @@ class Solution(object):
         while queue:
             sz = len(queue)
             for _ in range(sz):
-                node = queue.popleft()
-                i = node[0]
-                j = node[1]
+                i, j = queue.popleft()
                 if i == x and j == y:
                     return step
                 for a,b in direction:
