@@ -23,3 +23,27 @@ class Solution(object):
                     break
                 j += 1
         return dp[-1]
+
+class Solution(object):
+    def minSteps(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        #状态i个A
+        #选择：copy or paste
+        #dp[i]得到i个A最小的操作数
+        #base case:dp[0] = 0,dp[1] = 0
+        #状态转移: if i % j: dp[i] = min(dp[i],dp[i//j]+j,dp[j]+i//j)
+        if n == 1:
+            return 0
+        dp = [n] * (n+1)
+        dp[0] = 0
+        dp[1] = 0
+        for i in range(2,n+1):
+            j = 1
+            while j ** 2 <= i:
+                if i % j == 0:
+                    dp[i] = min(dp[i],dp[i//j]+j,dp[j]+i//j)
+                j += 1
+        return dp[-1]

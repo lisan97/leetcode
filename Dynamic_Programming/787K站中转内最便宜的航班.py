@@ -8,6 +8,28 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        #状态:搭乘航班t次，城市i
+        #dp[t][i]搭乘t次航班到达i的最少价格
+        #base case:dp[0][src] = 0,dp[0][:] = float('inf')
+        #状态转移:dp[t][i] = min(dp[t][i],dp[t-1][j]+cost(j,i))
+        dp = [[float('inf')] * n for _ in range(k+2)] #中转1次代表搭乘2趟航班了，又因为k是从1开始算的
+        dp[0][src] = 0
+        for t in range(1,k+2):
+            for fro,to,cost in flights:
+                dp[t][to] = min(dp[t][to],dp[t-1][fro]+cost)
+        ans = min([dp[t][dst] for t in range(k+2)])
+        return ans if ans != float('inf') else -1
+
+class Solution(object):
+    def findCheapestPrice(self, n, flights, src, dst, k):
+        """
+        :type n: int
+        :type flights: List[List[int]]
+        :type src: int
+        :type dst: int
+        :type k: int
+        :rtype: int
+        """
         from collections import defaultdict
         # 状态：起始位置和k
         # 选择：选哪条线路
