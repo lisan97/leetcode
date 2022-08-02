@@ -45,3 +45,51 @@ class Solution(object):
         if list2:
             p.next = list2
         return dummy.next
+
+class Solution(object):
+    def sortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        #归并排序
+        #找到中点，对两边分别排序
+        #然后用合并两个有序链表的方式归并
+        if not head:
+            return
+        return self.mergesort(head)
+
+    def mergesort(self,head):
+        if not head or not head.next:
+            return head
+        slow = head
+        fast = head
+        #找中点
+        while fast and fast.next:
+            pre = slow
+            fast = fast.next.next
+            slow = slow.next
+        #从中点断开
+        pre.next = None
+        return self.merge(self.mergesort(head),self.mergesort(slow))
+
+    def merge(self,left,right):
+        if not left:
+            return right
+        if not right:
+            return left
+        dummy = ListNode()
+        j = dummy
+        while left and right:
+            if left.val < right.val:
+                j.next = left
+                left = left.next
+            else:
+                j.next = right
+                right = right.next
+            j = j.next
+        if left:
+            j.next = left
+        if right:
+            j.next = right
+        return dummy.next

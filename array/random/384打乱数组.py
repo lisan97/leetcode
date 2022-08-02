@@ -8,13 +8,11 @@ class Solution(object):
         self.nums = nums
         self.n = len(nums)
 
-
     def reset(self):
         """
         :rtype: List[int]
         """
         return self.nums
-
 
     def shuffle(self):
         """
@@ -22,8 +20,8 @@ class Solution(object):
         """
         if not self.nums:
             return []
-        shuffled = self.nums.copy()
+        shuffled = self.nums[:]
         for i in range(self.n):
-            j = random.randrange(i,self.n)
+            j = random.randint(i,self.n-1)
             shuffled[i], shuffled[j] = shuffled[j], shuffled[i]
         return shuffled

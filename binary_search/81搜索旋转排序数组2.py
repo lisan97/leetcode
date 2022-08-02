@@ -19,10 +19,10 @@ class Solution(object):
             mid = (right-left)//2+left
             if nums[mid] == target:
                 return True
-            if nums[mid] == nums[left]:
+            if nums[mid] == nums[right]:
                 #无法判断哪个区间是增序的
-                left += 1
-            elif nums[mid] <= nums[right]:
+                right -= 1
+            elif nums[mid] < nums[right]:
                 #[mid,right]为递增区间，并且target也在这段区间中
                 if target > nums[mid] and target <= nums[right]:
                     left = mid + 1

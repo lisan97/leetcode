@@ -5,17 +5,17 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
+        if len(nums) < 4:
+            return []
+        self.length = len(nums)
+        nums.sort()
         return self.nSumTarget(nums,4,0,target)
 
     def nSumTarget(self,nums,n,start,target):
-        sz = len(nums)
         res = []
-        if n < 2 or sz < n:
-            return res
-        nums.sort()
         if n == 2:
             l = start
-            r = sz - 1
+            r = self.length - 1
             res = []
             while l < r:
                 left = nums[l]
@@ -36,7 +36,7 @@ class Solution(object):
                         r -= 1
             #n > 2 时，递归计算 (n-1)Sum 的结果
         else:
-            for i in range(start, sz):
+            for i in range(start, self.length):
                 # 跳过第一个数字重复的情况，否则会出现重复结果
                 if i > start and nums[i] == nums[i - 1]:
                     continue
