@@ -1,8 +1,8 @@
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution(object):
     def deleteDuplicates(self, head):
         """
@@ -20,3 +20,26 @@ class Solution(object):
             else:
                 p = p.next
         return head
+
+class Solution(object):
+    def deleteDuplicates(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        #维护两个指针pre,cur
+        #当pre.val != cur时，同时移动
+        #当pre.val == cur时，只往前移动cur
+        dummy = ListNode(val=-101)
+        dummy.next = head
+        pre = dummy
+        cur = head
+        while cur:
+            if pre.val != cur.val:
+                cur = cur.next
+                pre = pre.next
+            else:
+                while cur and pre.val == cur.val:
+                    cur = cur.next
+                pre.next = cur
+        return dummy.next
