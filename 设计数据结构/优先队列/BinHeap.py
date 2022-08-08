@@ -23,7 +23,7 @@ class BinHeap:
 
 	def sink(self,i):
 		stop = False
-		while i*2 < self.currentSize and not stop:
+		while i * 2 < self.currentSize and not stop:
 			mid = self.midPoint(i) #选择左子节点里右子节点更小的去比
 			if self.heapList[i] > self.heapList[mid]:
 				self.heapList[mid], self.heapList[i] = self.heapList[i], self.heapList[mid]
