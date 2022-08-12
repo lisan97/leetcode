@@ -23,6 +23,7 @@ class Solution(object):
             return head
         # 将链表连成环
         cur.next = head
+        #找到最后一个结点
         while add:
             cur = cur.next
             add -= 1
