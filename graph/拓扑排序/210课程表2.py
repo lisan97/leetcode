@@ -41,3 +41,27 @@ class Solution(object):
         # 后序遍历位置
         self.res.append(s)
         self.onPath[s] = False
+
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        graph, degree = self.buildGraph(numCourses,prerequisites)
+        start = [i for i in range(numCourses) if degree[i] == 0]
+        for node in start:
+            for nextnode in graph[node]:
+                degree[nextnode] -= 1
+                if degree[nextnode] == 0:
+                    start.append(nextnode)
+        return start if len(start) == numCourses else []
+
+    def buildGraph(self,numCourses,prerequisites):
+        graph = [[] for _ in range(numCourses)]
+        degree = [0] * numCourses
+        for line in prerequisites:
+            graph[line[1]].append(line[0]) #统计依赖关系图
+            degree[line[0]] += 1 #统计入度
+        return graph, degree
