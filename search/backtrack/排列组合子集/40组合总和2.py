@@ -19,7 +19,7 @@ class Solution(object):
         if remain == 0:
             self.res.append(track[:])
         for i in range(start,self.n):
-            #如果candidates[i]大于remain，直接break，因为这是有序数组，后面的值肯定都大于remain
+            #如果candidates[i]大于remain，直接break，因为这是为正的有序数组，后面的值肯定都大于remain
             if candidates[i] > remain:
                 break
             #剪枝逻辑，值相同的树枝，只遍历第一条
